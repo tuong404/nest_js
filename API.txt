@@ -1,0 +1,33 @@
+1, đăng ký
+@POST: http://localhost:3000/api/auth/register
+2, đăng nhập
+@POST: http://localhost:3000/api/auth/login
+
+------------------unknow---------------------------
+1, get all house 
+
+2, đăng ký làm manager để đăng bài:
+
+
+
+------------------user----------------
+1, dang nha cho thue(default status = 0--cho duyet, 1--dc duyet, 2-het phong)
+@POST
+http://localhost:3000/api/user/create/house
+
+all house
+@GET
+http://localhost:3000/api/user
+
+
+
+----------------admin--------------------------------
+1, duyệt manager
+@POST
+http://localhost:3000/api/admin/update-user
+id user can update truyen tu body
+
+2,duyet nha cho thue
+@POST
+http://localhost:3000/api/admin/update-house
+id house can update truyen tu body
