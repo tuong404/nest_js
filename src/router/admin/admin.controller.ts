@@ -10,11 +10,11 @@ import {
   Res,
   Req,
 } from '@nestjs/common';
-import { AdminGuard } from 'src/core/guard/admin.guard';
-import { AuthenticationGuard } from 'src/core/guard/authentication.guard';
+import { AdminGuard } from 'src/core/nest/guard/admin.guard';
+import { AuthenticationGuard } from 'src/core/nest/guard/authentication.guard';
 import { AdminService } from './admin.service';
 import { Request, Response } from 'express';
-import { idBody } from '../../core/pipe/dto/idBody';
+import { idBody } from '../../core/dto/idBody';
 import { HouseService } from '../house/house.service';
 
 @Controller()

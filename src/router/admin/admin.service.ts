@@ -7,7 +7,7 @@ import { FeedbackService } from '../feedback/feedback.service';
 import { HouseService } from '../house/house.service';
 
 import { Request, Response } from 'express';
-import { idBody } from '../../core/pipe/dto/idBody';
+import { idBody } from '../../core/dto/idBody';
 
 @Injectable()
 export class AdminService {

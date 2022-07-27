@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateHouseDto } from 'src/core/pipe/dto/dto.house';
-import { paramDTO } from 'src/core/pipe/dto/dto.param';
+import { CreateHouseDto } from 'src/core/dto/dto.house';
+import { paramDTO } from 'src/core/dto/dto.param';
 import { house, houseDocument } from 'src/schema/house.schema';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { verify } from 'src/core/response/verify/verify.token';
-import { idBody } from 'src/core/pipe/dto/idBody';
+import { idBody } from 'src/core/dto/idBody';
 
 @Injectable()
 export class HouseService {
@@ -42,6 +42,15 @@ export class HouseService {
     return b;
   }
 
+  async find(status: string, soft: string, next: NextFunction, res: Response) {
+    const data = await this.houseModel.find({ status: status });
+    if (data.length === 0) {
+      console.log('ko co nha nay');
+      throw new NotFoundException('Khong co du lieu');
+    }
+    console.log(data.length);
+    return res.status(200).json(data);
+  }
   //get all house by user
   async getAllHouse(id: string, res: Response) {
     const a = await this.houseModel.find({ user: id }).populate({

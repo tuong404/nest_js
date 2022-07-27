@@ -7,16 +7,16 @@ import { HouseModule } from '../house/house.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { user, userSchema } from 'src/schema/user.schema';
 import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { UserModule } from '../user/user.module';
+import { LocalStrategy } from './local.strategy';
+import { JoinModule } from '../join/join.module';
+import { SessionSerializer } from 'src/core/constant/session.serializer';
+// import { SessionSerializer } from 'src/core/utils/session';
 
 @Module({
-  imports: [
-    CommentModule,
-    FeedbackModule,
-    HouseModule,
-    JwtModule.register({}),
-    MongooseModule.forFeature([{ name: user.name, schema: userSchema }]),
-  ],
+  imports: [UserModule, PassportModule.register({ session: true }), JoinModule],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, LocalStrategy, SessionSerializer],
 })
 export class AuthModule {}

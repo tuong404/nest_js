@@ -19,6 +19,8 @@ all house
 @GET
 http://localhost:3000/api/user
 
+get house dang cho duyet,
+
 
 
 ----------------admin--------------------------------

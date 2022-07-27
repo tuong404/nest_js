@@ -5,19 +5,20 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { Routes, RouterModule } from 'nest-router';
-import { LoggerMiddleware } from 'src/core/middleware/getUser.middleware';
+import { LoggerMiddleware } from 'src/core/nest/middleware/getUser.middleware';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { StrangerModule } from './stranger/stranger.module';
 import { UserModule } from './user/user.module';
+import { JoinModule } from './join/join.module';
 
 const routes: Routes = [
   {
     path: '/api',
     children: [
       {
-        path: '/auth',
-        module: AuthModule,
+        path: 'join',
+        module: JoinModule,
       },
       {
         path: '/user',
@@ -42,6 +43,7 @@ const routes: Routes = [
     UserModule,
     StrangerModule,
     AdminModule,
+    JoinModule,
   ], // as usual, nothing new
 })
 // export class RouteModule implements NestModule {

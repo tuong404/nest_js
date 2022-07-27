@@ -16,12 +16,12 @@ export class LoggerMiddleware implements NestMiddleware {
     try {
       const user = jwt.verify(userJwt, process.env.JWT_SECRET);
       if (user) {
-        // console.log(user);
+        // console.log('user middle', user);
         req['user'] = user;
         // console.log('user', user);
       }
     } catch (error) {
-      console.log('LoggerMiddleware', error);
+      console.log('day la loi cua tml Middleware', error);
     }
     next();
   }
